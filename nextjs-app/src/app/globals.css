@@ -31,3 +31,43 @@ body {
     text-wrap: balance;
   }
 }
+
+.font-weight-bold{
+  font-weight: 600;
+}
+
+.custom-btn {
+  @apply bg-primary-1 text-neutral-1;
+  display: inline-block;    
+  padding: 0 16px;        
+  border: none;             
+  text-align: center;       
+  text-decoration: none;    
+  transition: all 0.3s ease;
+  position: relative;       
+  overflow: hidden;         
+  width: auto;              
+  white-space: nowrap;  
+  font-size: 24px;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.custom-btn span {
+  display: inline-block;    
+  transition: transform 0.3s ease; 
+  will-change: transform;
+}
+
+.custom-btn:hover span {
+  transform: scale(0.95);    
+  white-space: nowrap;      
+}
+
+.custom-btn:active {
+  @apply bg-primary-2;
+}
+
+.custom-btn:disabled {    
+  @apply bg-neutral-3;
+}
