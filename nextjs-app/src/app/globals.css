@@ -36,10 +36,10 @@ body {
   font-weight: 600;
 }
 
-.custom-btn {
+.highlight-btn {
   @apply bg-primary-1 text-neutral-1;
   display: inline-block;    
-  padding: 0 16px;        
+  /* padding: 0 16px;         */
   border: none;             
   text-align: center;       
   text-decoration: none;    
@@ -53,21 +53,32 @@ body {
   border-radius: 8px;
 }
 
-.custom-btn span {
+.highlight-btn span {
   display: inline-block;    
   transition: transform 0.3s ease; 
   will-change: transform;
 }
 
-.custom-btn:hover span {
+.highlight-btn:hover span {
   transform: scale(0.95);    
   white-space: nowrap;      
 }
 
-.custom-btn:active {
+.highlight-btn:active {
   @apply bg-primary-2;
 }
 
-.custom-btn:disabled {    
+.highlight-btn:disabled {    
   @apply bg-neutral-3;
+}
+
+.input{
+  padding: 8px 11px;
+  border: #0A6AE0 1px solid;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.b-test{
+  border: 1px red solid;
 }
