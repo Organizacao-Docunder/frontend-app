@@ -18,7 +18,8 @@ const config: Config = {
         neutral: {
           '1': '#FBFCFF',
           '2': '#111129',
-          '3': '#677585'
+          '3': '#677585',
+          '4': '#E7F0FC'
         }
       },
       fontSize: {
@@ -44,6 +45,11 @@ const config: Config = {
         }],
         'h4': ['24px', {
           lineHeight: '22.08px',
+          letterSpacing: '-0.02em',
+          fontWeight: '300'
+        }],
+        'h5': ['20px', {
+          lineHeight: '27px',
           letterSpacing: '-0.02em',
           fontWeight: '300'
         }],
