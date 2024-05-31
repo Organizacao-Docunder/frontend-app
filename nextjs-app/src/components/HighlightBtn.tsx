@@ -1,9 +1,11 @@
-export default function HighlightBtn({ id, content, paddingX }) {
-  console.log(paddingX)
+import Link from "next/link";
+
+export default function HighlightBtn({ id, content, customStyle, link = "" }) {
   return (
-    <button
+    <Link
       id={id}
-      className={`highlight-btn ${paddingX}`}
-    > {content} </button>
+      className={`highlight-btn ${customStyle}`}
+      href={link}
+    > {content} </Link>
   );
 }
