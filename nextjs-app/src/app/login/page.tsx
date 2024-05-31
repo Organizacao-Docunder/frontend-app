@@ -2,6 +2,7 @@ import Input from "@/components/Input";
 import HighlightBtn from "@/components/HighlightBtn";
 import Header from "@/components/Header";
 import Nav from "@/components/Nav";
+import Link from "next/link";
 
 export default function LoginPage() {
   return (
@@ -22,11 +23,11 @@ export default function LoginPage() {
               name="password"
             />
           </div>
-          <HighlightBtn id={"login"} content={"Entrar"} paddingX={'px-20'}/>
+          <HighlightBtn id={"login"} content={"Entrar"} customStyle={'px-20'} link={"/home"}/>
         </form>
         <div className="flex flex-col items-center">
           <p className="text-neutral-2">Esqueceu sua senha?</p>
-          <p className="text-neutral-2">Não possui uma conta? <button className="text-primary-1">Criar</button></p>
+          <p className="text-neutral-2">Não possui uma conta? <Link href={"/signup"} className="text-primary-1">Criar</Link></p>
         </div>
       </Nav>
     </main>
