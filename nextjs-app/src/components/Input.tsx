@@ -5,7 +5,7 @@ export default function Input({ placeholder, type, name }) {
       required
       type={type}
       name={name}
-      className="p-3 border border-solid border-primary-1 rounded"
+      className="w-full p-3 border border-solid border-primary-1 rounded text-p"
     />
   );
 }
