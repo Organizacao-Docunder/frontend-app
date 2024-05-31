@@ -3,10 +3,10 @@ import background from '../assets/bg.svg'
 
 export default function Nav({ children }) {
   return (
-    <nav className="relative w-full flex flex-col flex-grow items-center justify-center">
+    <nav className="relative w-full flex flex-grow">
       <Image className="absolute z-0 w-full h-full object-cover" alt="background-image" src={background} />
       <div
-        className="z-10 flex flex-col items-center justify-center gap-12"
+        className="z-10 w-full h-full"
       >
         {children}
       </div>

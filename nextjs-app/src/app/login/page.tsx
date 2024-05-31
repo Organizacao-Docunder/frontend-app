@@ -9,25 +9,27 @@ export default function LoginPage() {
     <main className="flex min-h-screen flex-col items-center justify-start ">
       <Header />
       <Nav>
-        <h1 className="text-h1 text-primary-1 font-weight-bold">Entrar</h1>
-        <form className="flex flex-col items-center w-80 gap-6">
-          <div className="flex flex-col w-full gap-3">
-            <Input
-              placeholder="E-mail"
-              type="text"
-              name="email"
-            />
-            <Input
-              placeholder="Senha"
-              type="password"
-              name="password"
-            />
+        <div className="h-header flex flex-col gap-12 justify-center items-center">
+          <h1 className="text-h1 text-primary-1 font-weight-bold">Entrar</h1>
+          <form className="flex flex-col items-center w-80 gap-6">
+            <div className="flex flex-col w-full gap-3">
+              <Input
+                placeholder="E-mail"
+                type="text"
+                name="email"
+              />
+              <Input
+                placeholder="Senha"
+                type="password"
+                name="password"
+              />
+            </div>
+            <HighlightBtn id={"login"} content={"Entrar"} customStyle={'px-20'} link={"/home"} />
+          </form>
+          <div className="flex flex-col items-center">
+            <p className="text-neutral-2">Esqueceu sua senha?</p>
+            <p className="text-neutral-2">Não possui uma conta? <Link href={"/signup"} className="text-primary-1">Criar</Link></p>
           </div>
-          <HighlightBtn id={"login"} content={"Entrar"} customStyle={'px-20'} link={"/home"}/>
-        </form>
-        <div className="flex flex-col items-center">
-          <p className="text-neutral-2">Esqueceu sua senha?</p>
-          <p className="text-neutral-2">Não possui uma conta? <Link href={"/signup"} className="text-primary-1">Criar</Link></p>
         </div>
       </Nav>
     </main>
