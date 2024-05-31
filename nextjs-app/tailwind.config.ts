@@ -13,7 +13,8 @@ const config: Config = {
           '1': '#0A6AE0',
           '2': '#0855B3',
           '3': '#ACC3DE',
-          '4': '#D3D1DE'
+          '4': '#B3D1F5',
+          '5': '#D3D1DE',
         },
         neutral: {
           '1': '#FBFCFF',
