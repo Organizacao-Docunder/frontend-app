@@ -11,7 +11,7 @@ import HighlightBtn from "@/components/HighlightBtn";
 export default function HomePage() {
   return (
     <main className="flex min-h-screen min-w-full flex-col items-center">
-      <Header />
+      <Header home={true}/>
       <Nav>
         <div className="flex min-w-full h-header">
           <aside className="flex flex-col gap-3 px-9 pt-4 w-1/5 bg-neutral-1">
