@@ -1,11 +1,11 @@
-export default function Input({ placeholder, type, name }) {
+export default function Input({ placeholder, type, name, border }) {
   return (
     <input
       placeholder={placeholder}
       required
       type={type}
       name={name}
-      className="w-full p-3 border border-solid border-primary-1 rounded text-p"
+      className={`w-full p-3 border border-solid rounded text-p text-neutral-2 ${border? 'border-red-500' : 'border-primary-1'}`}
     />
   );
 }
