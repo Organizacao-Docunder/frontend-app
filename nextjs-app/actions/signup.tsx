@@ -2,29 +2,18 @@
 
 import axios from "axios";
 
-export interface formPrevState {
-  message: string
-}
+export async function validateFirstPart(data) {
+  const nameRegex = /^(?=.*[a-zA-Z\u00C0-\u017F])([a-zA-Z\s\u00C0-\u017F]+)$/;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const has6Char = /^.{6,}$/;
+  const hasDigit = /(?=.*\d)/;
+  const hasSpecialChar = /(?=.*[!@#\$%\^&\*\(\)_\+\-=\[\]\{\};':",\.<>\/\?\\|`~])/;
+  const hasUpperCase = /(?=.*[A-Z])/;
+  const hasLowerCase = /(?=.*[a-z])/;
+  const noSpaceOrNewline = /^[^\s\n\r]+$/;
+  const anyCharsToEnd = /.*/;
 
-export async function signup(prevState: formPrevState, formData: FormData) {
-
-  const body = {
-    name: formData.get('name'),
-    email: formData.get('email'),
-    password: formData.get('password')
-  }
-
-  function validatePassword(data) {
-    const nameRegex = /^(?=.*[a-zA-Z\u00C0-\u017F])([a-zA-Z\s\u00C0-\u017F]+)$/;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const has6Char = /^.{6,}$/;
-    const hasDigit = /(?=.*\d)/;
-    const hasSpecialChar = /(?=.*[!@#\$%\^&\*\(\)_\+\-=\[\]\{\};':",\.<>\/\?\\|`~])/;
-    const hasUpperCase = /(?=.*[A-Z])/;
-    const hasLowerCase = /(?=.*[a-z])/;
-    const noSpaceOrNewline = /^[^\s\n\r]+$/;
-    const anyCharsToEnd = /.*/;
-
+  try {
     if (!nameRegex.test(data.name)) {
       throw new Error('O nome deve conter apenas letras e espaços.', { cause: 'name' });
     }
@@ -54,15 +43,62 @@ export async function signup(prevState: formPrevState, formData: FormData) {
     }
 
     //password confirmation
-    if (data.password !== formData.get('matchPassword')) {
+    if (data.password !== data.matchPassword) {
       throw new Error('Confirmação de senha incorreta.', { cause: 'match password' });
     }
 
-    return true;
+    return { error: '', message: 'OK' };
+  } catch (error) {
+    if (error instanceof Error) {
+      return { error: error.cause, message: error.message };
+    }
+    return { error: '404', message: 'Bad Request' };
+  }
+}
+
+export async function validateSecondPart(data) {
+  try {
+    if (data.answer1.length < 3) {
+      throw new Error('A resposta deve ter pelo menos 3 caracteres.', { cause: 'answer 1' });
+    }
+    if (data.answer2.length < 3) {
+      throw new Error('A resposta deve ter pelo menos 3 caracteres.', { cause: 'answer 2' });
+    }
+    if (data.answer3.length < 3) {
+      throw new Error('A resposta deve ter pelo menos 3 caracteres.', { cause: 'answer 3' });
+    }
+    return { error: '', message: 'OK' };
+  } catch (error) {
+    if (error instanceof Error) {
+      return { error: error.cause, message: error.message };
+    }
+    return { error: '404', message: 'Bad Request' };
+  }
+}
+
+export async function signup(firstForm, secondForm) {
+  const body = {
+    name: firstForm.name,
+    email: firstForm.email,
+    password: firstForm.password,
+    secretAnswers:
+      [
+        {
+          questionId: Number(secondForm.questionId1),
+          answer: secondForm.answer1
+        },
+        {
+          questionId: Number(secondForm.questionId2),
+          answer: secondForm.answer2
+        },
+        {
+          questionId: Number(secondForm.questionId3),
+          answer: secondForm.answer3
+        }
+      ]
   }
 
   try {
-    validatePassword(body)
     await axios.post('http://localhost:3000/user', body);
     return { error: '', message: 'Created' };
   } catch (error) {
