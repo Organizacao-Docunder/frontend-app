@@ -27,7 +27,7 @@ export default function Header({ home = false }) {
             <HighlightBtn id={"create"} content={"Criar"} customStyle={'px-4'} link={""} />
             </div>
             <div className="flex gap-4 w-1/2">
-              <Input placeholder={"Pesquisar"} type={""} name={"research"}/>
+              <Input placeholder={"Pesquisar"} type={""} name={"research"} border={false}/>
               <Image alt="icon-help" src={iconHelp} />
               <Image alt="icon-settings" src={iconSettings} />
               <Image alt="icon-ellipse" src={iconEllipse} />
