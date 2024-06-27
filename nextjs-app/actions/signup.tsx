@@ -13,12 +13,22 @@ export async function validateFirstPart(data) {
   const noSpaceOrNewline = /^[^\s\n\r]+$/;
   const anyCharsToEnd = /.*/;
 
+  console.log(data.email.length)
   try {
+    if (data.name.length > 74) {
+      throw new Error('O nome deve possuir menos de 74 caracteres.', { cause: 'name' });
+    }
     if (!nameRegex.test(data.name)) {
       throw new Error('O nome deve conter apenas letras e espaços.', { cause: 'name' });
     }
+    if (data.email.length < 6 || data.email.length > 74) {
+      throw new Error('O e-mail deve possuir entre 6 e 74 caracteres.', { cause: 'email' });
+    }
     if (!emailRegex.test(data.email)) {
       throw new Error('E-mail inválido.', { cause: 'email' });
+    }
+    if (data.password.length < 6 || data.password.length > 74) {
+      throw new Error('A senha deve possuir entre 6 e 74 caracteres.', { cause: 'password' });
     }
     if (!has6Char.test(data.password)) {
       throw new Error('Adicione pelo menos 6 caracteres.', { cause: 'password' });
