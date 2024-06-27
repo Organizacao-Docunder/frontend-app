@@ -67,14 +67,14 @@ export async function validateFirstPart(data) {
 
 export async function validateSecondPart(data) {
   try {
-    if (data.answer1.length < 3) {
-      throw new Error('A resposta deve ter pelo menos 3 caracteres.', { cause: 'answer 1' });
+    if (data.answer1.length < 3 || data.answer1.length > 74) {
+      throw new Error('A resposta deve ter entre 3 e 74 caracteres.', { cause: 'answer 1' });
     }
-    if (data.answer2.length < 3) {
-      throw new Error('A resposta deve ter pelo menos 3 caracteres.', { cause: 'answer 2' });
+    if (data.answer2.length < 3 || data.answer2.length > 74) {
+      throw new Error('A resposta deve ter entre 3 e 74 caracteres.', { cause: 'answer 2' });
     }
-    if (data.answer3.length < 3) {
-      throw new Error('A resposta deve ter pelo menos 3 caracteres.', { cause: 'answer 3' });
+    if (data.answer3.length < 3 || data.answer3.length > 74) {
+      throw new Error('A resposta deve ter entre 3 e 74 caracteres.', { cause: 'answer 3' });
     }
     return { error: '', message: 'OK' };
   } catch (error) {
