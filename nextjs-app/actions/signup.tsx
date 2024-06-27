@@ -13,7 +13,6 @@ export async function validateFirstPart(data) {
   const noSpaceOrNewline = /^[^\s\n\r]+$/;
   const anyCharsToEnd = /.*/;
 
-  console.log(data.email.length)
   try {
     if (data.name.length > 74) {
       throw new Error('O nome deve possuir menos de 74 caracteres.', { cause: 'name' });
