@@ -64,9 +64,9 @@ export default function RecoverPasswordPage() {
         <div className="h-header flex flex-col justify-center items-center ">
           {screen === 1 ?
             <>
-              <h1 className={`text-h1 mb-12 text-primary-1 font-weight-bold`}>Recuperar senha</h1>
+              <h1 className={`mb-12 text-primary-1 font-weight-600`}>Recuperar senha</h1>
               <div className="flex flex-col w-full max-w-sm">
-                <p className="text-p text-neutral-2 py-1">E-mail</p>
+                <p className="text-neutral-2 py-1">E-mail</p>
                 <input
                   placeholder="Insira seu email"
                   required
@@ -75,7 +75,7 @@ export default function RecoverPasswordPage() {
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className={`w-full p-3 border border-solid rounded text-p text-neutral-2 ${response.status === 401 ? 'border-red-500' : 'border-primary-1'}`}
+                  className={`w-full p-3 border border-solid rounded text-neutral-2 ${response.status === 401 ? 'border-red-500' : 'border-primary-1'}`}
                 />
                 <span className="h-4 pt-1 w-full flex justify-end items-center">
                   <p className="text-red-500 text-sm">
@@ -87,14 +87,14 @@ export default function RecoverPasswordPage() {
             </>
             : screen === 2 ?
               <>
-                <h1 className={`text-h1 mb-12 text-primary-1 font-weight-bold`}>Recuperar senha</h1>
+                <h1 className={`mb-12 text-primary-1 font-weight-600`}>Recuperar senha</h1>
                 <div className="flex flex-col w-full max-w-sm">
                   <select
                     value={questionAndAnswer.questionId}
                     onChange={(e) => onChange(e, questionAndAnswer, setQuestionAndAnswer)}
                     name="questionId"
                     id="questionId"
-                    className={`h-10 mb-2 w-full focus:outline-none focus:shadow-none bg-white border rounded-md pl-3 pr-10 text-neutral-2 text-p ${response.cause === 'question' ? 'border-red-500' : 'border-primary-1'}`}
+                    className={`h-10 mb-2 w-full focus:outline-none focus:shadow-none bg-white border rounded-md pl-3 pr-10 text-neutral-2 ${response.cause === 'question' ? 'border-red-500' : 'border-primary-1'}`}
                   >
                     <option value={0} disabled className="text-neutral-3 ">Escolha uma pergunta</option>
                     {secretQuestions.map(item => <option key={item.id} value={item.id}>{item.question}</option>)}
@@ -105,7 +105,7 @@ export default function RecoverPasswordPage() {
                     name="answer"
                     value={questionAndAnswer.answer}
                     onChange={(e) => onChange(e, questionAndAnswer, setQuestionAndAnswer)}
-                    className={`w-full p-3 border border-solid rounded text-p focus:outline-none focus:shadow-none text-neutral-2  ${response.cause === 'answer' ? 'border-red-500' : 'border-primary-1'}`}
+                    className={`w-full p-3 border border-solid rounded focus:outline-none focus:shadow-none text-neutral-2  ${response.cause === 'answer' ? 'border-red-500' : 'border-primary-1'}`}
                   />
                   <span className="h-8 w-full flex justify-end items-center">
                     <p className="text-red-500 text-sm">
@@ -117,9 +117,9 @@ export default function RecoverPasswordPage() {
               </>
               : screen === 3 ?
                 <>
-                  <h1 className={`text-h1 mb-12 text-primary-1 font-weight-bold`}>Recuperar senha</h1>
+                  <h1 className={`mb-12 text-primary-1 font-weight-600`}>Recuperar senha</h1>
                   <div className="flex flex-col w-full max-w-sm">
-                    <p className="text-p text-neutral-2 py-1">Nova senha</p>
+                    <p className="text-neutral-2 py-1">Nova senha</p>
                     <input
                       placeholder="Insira sua senha"
                       required
@@ -128,14 +128,14 @@ export default function RecoverPasswordPage() {
                       id="password"
                       value={newPassword.password}
                       onChange={(e) => onChange(e, newPassword, setNewPassword)}
-                      className={`w-full p-3 border border-solid rounded text-p text-neutral-2 ${response.cause === 'password' ? 'border-red-500' : 'border-primary-1'}`}
+                      className={`w-full p-3 border border-solid rounded text-neutral-2 ${response.cause === 'password' ? 'border-red-500' : 'border-primary-1'}`}
                     />
                     <span className="h-4 pt-1 w-full flex justify-end items-center">
                       <p className="text-red-500 text-sm">
                         {response.cause === "password" && response.message}
                       </p>
                     </span>
-                    <p className="text-p text-neutral-2 py-1">Confirmar senha</p>
+                    <p className="text-neutral-2 py-1">Confirmar senha</p>
                     <input
                       placeholder="Insira novamente sua senha"
                       required
@@ -144,7 +144,7 @@ export default function RecoverPasswordPage() {
                       id="matchPassword"
                       value={newPassword.matchPassword}
                       onChange={(e) => onChange(e, newPassword, setNewPassword)}
-                      className={`w-full p-3 border border-solid rounded text-p text-neutral-2 ${response.cause === 'match password' ? 'border-red-500' : 'border-primary-1'}`}
+                      className={`w-full p-3 border border-solid rounded text-neutral-2 ${response.cause === 'match password' ? 'border-red-500' : 'border-primary-1'}`}
                     />
                     <span className="h-4 pt-1 w-full flex justify-end items-center">
                       <p className="text-red-500 text-sm">
@@ -157,8 +157,8 @@ export default function RecoverPasswordPage() {
                 :
                 <>
                   <Image alt="check" src={check} className="mb-8" />
-                  <h1 className={`text-h1 mb-4 text-primary-1 font-weight-bold`}>Senha redefinida</h1>
-                  <h4 className={`text-h4 mb-24 text-primary-1 font-weight-bold`}>Sua nova senha foi salva.</h4>
+                  <h1 className={`mb-4 text-primary-1 font-weight-600`}>Senha redefinida</h1>
+                  <h4 className={`mb-24 text-primary-1 font-weight-600`}>Sua nova senha foi salva.</h4>
                   <button onClick={() => goToHomePage()} className="highlight-btn min-w-60">Ir para página inicial</button>
                 </>
           }
