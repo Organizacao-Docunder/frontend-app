@@ -4,11 +4,13 @@ import Header from "@/components/Header";
 import Nav from "@/components/Nav";
 import { validateFirstPart, validateSecondPart, signup } from '../../../actions/signup'
 import { useEffect, useState } from "react";
-import Modal from './Modal'
+import ModalSecretAnswers from './ModalSecretAnswers'
+import ModalTerms from './ModalTerms'
 import { useRouter } from "next/navigation";
 
 export default function SignupPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalSecretAnswersOpen, setIsModalSecretAnswersOpen] = useState(false);
+  const [isModalTermsOpen, setIsModalTermsOpen] = useState(false);
   const [isFirstForm, setIsFirstForm] = useState(true)
   const [response, setResponse] = useState({ message: "", error: "" })
   const [filteredQuestions2, setFilteredQuestions2] = useState([{ id: 0, question: "" }])
@@ -100,7 +102,7 @@ export default function SignupPage() {
     } 
     if (result.error.length === 0) {
       setResponse({ message: "", error: "" })
-      setIsModalOpen(true)
+      setIsModalSecretAnswersOpen(true)
     } 
   }
 
@@ -120,17 +122,18 @@ export default function SignupPage() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-start ">
-      <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} secretQuestions={secretQuestions} secondForm={secondForm} onSubmit={onSubmit}/>
+      <ModalSecretAnswers isModalOpen={isModalSecretAnswersOpen} setIsModalOpen={setIsModalSecretAnswersOpen} secretQuestions={secretQuestions} secondForm={secondForm} onSubmit={onSubmit}/>
+      <ModalTerms isModalOpen={isModalTermsOpen} setIsModalOpen={setIsModalTermsOpen}/>
       <Header />
       <Nav>
         <div className="h-header flex flex-col gap-12 justify-center items-center">
-          <h1 className="text-h1 text-primary-1 font-weight-bold">Primeiros Passos</h1>
+          <h1 className="text-primary-1 font-weight-600">Primeiros Passos</h1>
           <div id="formSignup" className="flex flex-col items-center w-80 gap-3">
             {isFirstForm ?
               <>
                 <div className="flex flex-col w-full">
                   <div>
-                    <p className="text-p text-neutral-2 py-1">Nome</p>
+                    <p className="text-neutral-2 py-1">Nome</p>
                     <input
                       placeholder="Insira seu nome"
                       required
@@ -139,7 +142,7 @@ export default function SignupPage() {
                       id="name"
                       value={firstForm.name}
                       onChange={(e) => onChange(e, firstForm, setFirstForm)}
-                      className={`w-full p-3 border border-solid rounded text-p text-neutral-2 ${response.error === 'name' ? 'border-red-500' : 'border-primary-1'}`}
+                      className={`w-full p-3 border border-solid rounded text-neutral-2 ${response.error === 'name' ? 'border-red-500' : 'border-primary-1'}`}
                     />
                     <span className="h-4 pt-1 w-full flex justify-end items-center">
                       <p className="text-red-500 text-sm">
@@ -148,7 +151,7 @@ export default function SignupPage() {
                     </span>
                   </div>
                   <div>
-                    <p className="text-p text-neutral-2 py-1">E-mail</p>
+                    <p className="text-neutral-2 py-1">E-mail</p>
                     <input
                       placeholder="Insira seu e-mail"
                       required
@@ -157,7 +160,7 @@ export default function SignupPage() {
                       id="email"
                       value={firstForm.email}
                       onChange={(e) => onChange(e, firstForm, setFirstForm)}
-                      className={`w-full p-3 border border-solid rounded text-p text-neutral-2 ${response.error === 'email' ? 'border-red-500' : 'border-primary-1'}`}
+                      className={`w-full p-3 border border-solid rounded text-neutral-2 ${response.error === 'email' ? 'border-red-500' : 'border-primary-1'}`}
                     />
                     <span className="h-4 pt-1 w-full flex justify-end items-center">
                       <p className="text-red-500 text-sm">
@@ -166,7 +169,7 @@ export default function SignupPage() {
                     </span>
                   </div>
                   <div>
-                    <p className="text-p text-neutral-2 py-1">Senha</p>
+                    <p className="text-neutral-2 py-1">Senha</p>
                     <input
                       placeholder="Insira sua senha"
                       required
@@ -175,7 +178,7 @@ export default function SignupPage() {
                       id="password"
                       value={firstForm.password}
                       onChange={(e) => onChange(e, firstForm, setFirstForm)}
-                      className={`w-full p-3 border border-solid rounded text-p text-neutral-2 ${response.error === 'password' || response.error === 'match password' ? 'border-red-500' : 'border-primary-1'}`}
+                      className={`w-full p-3 border border-solid rounded text-neutral-2 ${response.error === 'password' || response.error === 'match password' ? 'border-red-500' : 'border-primary-1'}`}
                     />
                     <span className="h-4 pt-1 w-full flex justify-end items-center">
                       <p className="text-red-500 text-sm">
@@ -184,7 +187,7 @@ export default function SignupPage() {
                     </span>
                   </div>
                   <div>
-                    <p className="text-p text-neutral-2 py-1">Confirmar senha</p>
+                    <p className="text-neutral-2 py-1">Confirmar senha</p>
                     <input
                       placeholder="Confirme sua senha"
                       required
@@ -192,7 +195,7 @@ export default function SignupPage() {
                       name="matchPassword"
                       value={firstForm.matchPassword}
                       onChange={(e) => onChange(e, firstForm, setFirstForm)}
-                      className={`w-full p-3 border border-solid rounded text-p text-neutral-2 ${response.error === 'match password' ? 'border-red-500' : 'border-primary-1'}`}
+                      className={`w-full p-3 border border-solid rounded text-neutral-2 ${response.error === 'match password' ? 'border-red-500' : 'border-primary-1'}`}
                     />
                     <span className="h-4 pt-1 w-full flex justify-end items-center">
                       <p className="text-red-500 text-sm">
@@ -201,12 +204,12 @@ export default function SignupPage() {
                     </span>
                   </div>
                 </div>
-                <p className=" text-p text-neutral-2 pb-3">Ao se cadastrar, estou ciente dos Termos de Uso e das Políticas de privacidade do Docunder.</p>
+                <p className=" text-neutral-2 pb-3">Ao se cadastrar, estou ciente dos <span onClick={() => setIsModalTermsOpen(true)} className="text-primary-1 cursor-pointer">Termos de Uso e das Políticas de privacidade</span> do Docunder.</p>
                 <button type="button" onClick={() => goToSecondPart()} className="highlight-btn min-w-full">Continuar</button>
               </>
               :
               <>
-                <p className=" text-p text-primary-1 pb-3 text-center">Caso você esqueça sua senha, terá que responder às seguintes perguntas para recuperá-la:</p>
+                <p className=" text-primary-1 pb-3 text-center">Caso você esqueça sua senha, terá que responder às seguintes perguntas para recuperá-la:</p>
 
                 {/* <label htmlFor="secret-question-1" className="texp-p text-neutral-2">Perguntas Secretas</label> */}
                 <div className="flex flex-col w-full">
@@ -216,7 +219,7 @@ export default function SignupPage() {
                     onChange={(e) => onChange(e, secondForm, setSecondForm)}
                     name="questionId1"
                     id="questionId1"
-                    className={`h-10 mb-2 w-full focus:outline-none focus:shadow-none bg-white border rounded-md pl-3 pr-10 text-neutral-2 text-p ${response.error === 'question 1' ? 'border-red-500' : 'border-primary-1'}`}
+                    className={`h-10 mb-2 w-full focus:outline-none focus:shadow-none bg-white border rounded-md pl-3 pr-10 text-neutral-2 ${response.error === 'question 1' ? 'border-red-500' : 'border-primary-1'}`}
                   >
                     <option value={0} disabled className="text-neutral-3 ">Escolha a primeira pergunta</option>
                     {secretQuestions.map(item => <option key={item.id} value={item.id}>{item.question}</option>)}
@@ -227,7 +230,7 @@ export default function SignupPage() {
                     name="answer1"
                     value={secondForm.answer1}
                     onChange={(e) => onChange(e, secondForm, setSecondForm)}
-                    className={`w-full p-3 border border-solid rounded text-p focus:outline-none focus:shadow-none text-neutral-2 ${response.error === 'answer 1' ? 'border-red-500' : 'border-primary-1'}`}
+                    className={`w-full p-3 border border-solid rounded focus:outline-none focus:shadow-none text-neutral-2 ${response.error === 'answer 1' ? 'border-red-500' : 'border-primary-1'}`}
                   />
                   <span className="h-8 w-full flex justify-end items-center">
                     <p className="text-red-500 text-sm">
@@ -241,7 +244,7 @@ export default function SignupPage() {
                     onChange={(e) => onChange(e, secondForm, setSecondForm)}
                     name="questionId2"
                     id="questionId2"
-                    className={`h-10 mb-2 w-full focus:outline-none focus:shadow-none border border-primary-1 rounded-md pl-3 pr-10 text-neutral-2 text-p ${response.error === 'question 2' ? 'border-red-500' : 'border-primary-1'}`}
+                    className={`h-10 mb-2 w-full focus:outline-none focus:shadow-none border border-primary-1 rounded-md pl-3 pr-10 text-neutral-2 ${response.error === 'question 2' ? 'border-red-500' : 'border-primary-1'}`}
                   >
                     <option value={0} disabled className="text-neutral-3 ">Escolha a segunda pergunta</option>
                     {secondForm.questionId1 !== 0 && filteredQuestions2.map(item => <option key={item.id} value={item.id}>{item.question}</option>)}
@@ -252,7 +255,7 @@ export default function SignupPage() {
                     name="answer2"
                     value={secondForm.answer2}
                     onChange={(e) => onChange(e, secondForm, setSecondForm)}
-                    className={`w-full p-3 border border-solid rounded text-p focus:outline-none focus:shadow-none text-neutral-2 ${response.error === 'answer 2' ? 'border-red-500' : 'border-primary-1'}`}
+                    className={`w-full p-3 border border-solid rounded focus:outline-none focus:shadow-none text-neutral-2 ${response.error === 'answer 2' ? 'border-red-500' : 'border-primary-1'}`}
                   />
                   <span className="h-8 w-full flex justify-end items-center">
                     <p className="text-red-500 text-sm">
@@ -266,7 +269,7 @@ export default function SignupPage() {
                     onChange={(e) => onChange(e, secondForm, setSecondForm)}
                     name="questionId3"
                     id="questionId3"
-                    className={`h-10 mb-2 w-full focus:outline-none focus:shadow-none bg-white border rounded-md pl-3 pr-10 text-neutral-2 text-p ${response.error === 'question 3' ? 'border-red-500' : 'border-primary-1'}`}
+                    className={`h-10 mb-2 w-full focus:outline-none focus:shadow-none bg-white border rounded-md pl-3 pr-10 text-neutral-2 ${response.error === 'question 3' ? 'border-red-500' : 'border-primary-1'}`}
                   >
                     <option value={0} disabled className="text-neutral-3 ">Escolha a terceira pergunta</option>
                     {filteredQuestions3.map(item => <option key={item.id} value={item.id}>{item.question}</option>)}
@@ -277,7 +280,7 @@ export default function SignupPage() {
                     name="answer3"
                     value={secondForm.answer3}
                     onChange={(e) => onChange(e, secondForm, setSecondForm)}
-                    className={`w-full p-3 border border-solid rounded text-p focus:outline-none focus:shadow-none text-neutral-2 ${response.error === 'answer 3' ? 'border-red-500' : 'border-primary-1'}`}
+                    className={`w-full p-3 border border-solid rounded focus:outline-none focus:shadow-none text-neutral-2 ${response.error === 'answer 3' ? 'border-red-500' : 'border-primary-1'}`}
                   />
                   <span className="h-4 pt-1 w-full flex justify-end items-center">
                     <p className="text-red-500 text-sm">
