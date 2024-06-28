@@ -216,7 +216,7 @@ export default function SignupPage() {
                     onChange={(e) => onChange(e, secondForm, setSecondForm)}
                     name="questionId1"
                     id="questionId1"
-                    className="h-10 mb-2 w-full focus:outline-none focus:shadow-none bg-white border border-primary-1 rounded-md pl-3 pr-10 text-neutral-2 text-p"
+                    className={`h-10 mb-2 w-full focus:outline-none focus:shadow-none bg-white border rounded-md pl-3 pr-10 text-neutral-2 text-p ${response.error === 'question 1' ? 'border-red-500' : 'border-primary-1'}`}
                   >
                     <option value={0} disabled className="text-neutral-3 ">Escolha a primeira pergunta</option>
                     {secretQuestions.map(item => <option key={item.id} value={item.id}>{item.question}</option>)}
@@ -232,6 +232,7 @@ export default function SignupPage() {
                   <span className="h-8 w-full flex justify-end items-center">
                     <p className="text-red-500 text-sm">
                       {response.error === 'answer 1' && response.message}
+                      {response.error === 'question 1' && response.message}
                     </p>
                   </span>
                   <select
@@ -240,7 +241,7 @@ export default function SignupPage() {
                     onChange={(e) => onChange(e, secondForm, setSecondForm)}
                     name="questionId2"
                     id="questionId2"
-                    className={`h-10 mb-2 w-full focus:outline-none focus:shadow-none border border-primary-1 rounded-md pl-3 pr-10 text-neutral-2 text-p`}
+                    className={`h-10 mb-2 w-full focus:outline-none focus:shadow-none border border-primary-1 rounded-md pl-3 pr-10 text-neutral-2 text-p ${response.error === 'question 2' ? 'border-red-500' : 'border-primary-1'}`}
                   >
                     <option value={0} disabled className="text-neutral-3 ">Escolha a segunda pergunta</option>
                     {secondForm.questionId1 !== 0 && filteredQuestions2.map(item => <option key={item.id} value={item.id}>{item.question}</option>)}
@@ -256,6 +257,7 @@ export default function SignupPage() {
                   <span className="h-8 w-full flex justify-end items-center">
                     <p className="text-red-500 text-sm">
                       {response.error === 'answer 2' && response.message}
+                      {response.error === 'question 2' && response.message}
                     </p>
                   </span>
                   <select
@@ -264,7 +266,7 @@ export default function SignupPage() {
                     onChange={(e) => onChange(e, secondForm, setSecondForm)}
                     name="questionId3"
                     id="questionId3"
-                    className="h-10 mb-2 w-full focus:outline-none focus:shadow-none bg-white border border-primary-1 rounded-md pl-3 pr-10 text-neutral-2 text-p"
+                    className={`h-10 mb-2 w-full focus:outline-none focus:shadow-none bg-white border rounded-md pl-3 pr-10 text-neutral-2 text-p ${response.error === 'question 3' ? 'border-red-500' : 'border-primary-1'}`}
                   >
                     <option value={0} disabled className="text-neutral-3 ">Escolha a terceira pergunta</option>
                     {filteredQuestions3.map(item => <option key={item.id} value={item.id}>{item.question}</option>)}
@@ -280,6 +282,7 @@ export default function SignupPage() {
                   <span className="h-4 pt-1 w-full flex justify-end items-center">
                     <p className="text-red-500 text-sm">
                       {response.error === 'answer 3' && response.message}
+                      {response.error === 'question 3' && response.message}
                     </p>
                   </span>
                 </div>

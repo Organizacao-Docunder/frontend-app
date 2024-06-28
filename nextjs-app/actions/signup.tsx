@@ -67,6 +67,15 @@ export async function validateFirstPart(data) {
 
 export async function validateSecondPart(data) {
   try {
+    if (data.questionId1 === 0) {
+      throw new Error('Escolha uma pergunta.', { cause: 'question 1' });
+    }
+    if (data.questionId2 === 0) {
+      throw new Error('Escolha uma pergunta.', { cause: 'question 2' });
+    }
+    if (data.questionId3 === 0) {
+      throw new Error('Escolha uma pergunta.', { cause: 'question 3' });
+    }
     if (data.answer1.length < 3 || data.answer1.length > 74) {
       throw new Error('A resposta deve ter entre 3 e 74 caracteres.', { cause: 'answer 1' });
     }
