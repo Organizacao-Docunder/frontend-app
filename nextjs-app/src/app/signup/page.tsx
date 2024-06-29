@@ -138,7 +138,7 @@ export default function SignupPage() {
                       id="name"
                       value={firstForm.name}
                       onChange={(e) => onChange(e, firstForm, setFirstForm)}
-                      className={`w-full p-3 border border-solid rounded text-neutral-2 ${response.error === 'name' ? 'border-red-500' : 'border-primary-1'}`}
+                      className={`w-full px-3 h-10 border border-solid rounded text-neutral-2 ${response.error === 'name' ? 'border-red-500' : 'border-primary-1'}`}
                     />
                     <span className="h-4 pt-1 w-full flex justify-end items-center">
                       <p className="text-red-500 text-sm">
@@ -156,7 +156,7 @@ export default function SignupPage() {
                       id="email"
                       value={firstForm.email}
                       onChange={(e) => onChange(e, firstForm, setFirstForm)}
-                      className={`w-full p-3 border border-solid rounded text-neutral-2 ${response.error === 'email' ? 'border-red-500' : 'border-primary-1'}`}
+                      className={`w-full px-3 h-10 border border-solid rounded text-neutral-2 ${response.error === 'email' ? 'border-red-500' : 'border-primary-1'}`}
                     />
                     <span className="h-4 pt-1 w-full flex justify-end items-center">
                       <p className="text-red-500 text-sm">
@@ -174,7 +174,7 @@ export default function SignupPage() {
                       id="password"
                       value={firstForm.password}
                       onChange={(e) => onChange(e, firstForm, setFirstForm)}
-                      className={`w-full p-3 border border-solid rounded text-neutral-2 ${response.error === 'password' || response.error === 'match password' ? 'border-red-500' : 'border-primary-1'}`}
+                      className={`w-full px-3 h-10 border border-solid rounded text-neutral-2 ${response.error === 'password' || response.error === 'match password' ? 'border-red-500' : 'border-primary-1'}`}
                     />
                     <span className="h-4 pt-1 w-full flex justify-end items-center">
                       <p className="text-red-500 text-sm">
@@ -191,7 +191,7 @@ export default function SignupPage() {
                       name="matchPassword"
                       value={firstForm.matchPassword}
                       onChange={(e) => onChange(e, firstForm, setFirstForm)}
-                      className={`w-full p-3 border border-solid rounded text-neutral-2 ${response.error === 'match password' ? 'border-red-500' : 'border-primary-1'}`}
+                      className={`w-full px-3 h-10 border border-solid rounded text-neutral-2 ${response.error === 'match password' ? 'border-red-500' : 'border-primary-1'}`}
                     />
                     <span className="h-4 pt-1 w-full flex justify-end items-center">
                       <p className="text-red-500 text-sm">
