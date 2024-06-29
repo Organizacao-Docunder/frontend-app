@@ -13,6 +13,7 @@ export default function SignupPage() {
   const [isModalTermsOpen, setIsModalTermsOpen] = useState(false);
   const [isFirstForm, setIsFirstForm] = useState(true)
   const [response, setResponse] = useState({ message: "", error: "" })
+  const [filteredQuestions1, setFilteredQuestions1] = useState([{ id: 0, question: "" }])
   const [filteredQuestions2, setFilteredQuestions2] = useState([{ id: 0, question: "" }])
   const [filteredQuestions3, setFilteredQuestions3] = useState([{ id: 0, question: "" }])
   const [firstForm, setFirstForm] = useState({
@@ -75,14 +76,15 @@ export default function SignupPage() {
   ]
 
   useEffect(() => {
-    const filteredQuestions = secretQuestions.filter(item => item.id != secondForm.questionId1)
-    setFilteredQuestions2([...filteredQuestions])
-  }, [secondForm.questionId1])
+    setFilteredQuestions1(secretQuestions.filter(item => item.id != secondForm.questionId2 && item.id != secondForm.questionId3))
+    setFilteredQuestions2(secretQuestions.filter(item => item.id != secondForm.questionId1 && item.id != secondForm.questionId3))
+    setFilteredQuestions3(secretQuestions.filter(item => item.id != secondForm.questionId1 && item.id != secondForm.questionId2))
+  }, [secondForm.questionId1, secondForm.questionId2, secondForm.questionId3])
 
-  useEffect(() => {
-    const filteredQuestions = secretQuestions.filter(item => item.id != secondForm.questionId1 && item.id != secondForm.questionId2)
-    setFilteredQuestions3([...filteredQuestions])
-  }, [secondForm.questionId2])
+  // useEffect(() => {
+  //   const filteredQuestions = secretQuestions.filter(item => item.id != secondForm.questionId1 && item.id != secondForm.questionId2)
+  //   setFilteredQuestions3([...filteredQuestions])
+  // }, [secondForm.questionId2])
 
   async function goToSecondPart() {
     console.log(firstForm)
@@ -222,7 +224,7 @@ export default function SignupPage() {
                     className={`h-10 mb-2 w-full focus:outline-none focus:shadow-none bg-white border rounded-md pl-3 pr-10 text-neutral-2 ${response.error === 'question 1' ? 'border-red-500' : 'border-primary-1'}`}
                   >
                     <option value={0} disabled className="text-neutral-3 ">Escolha a primeira pergunta</option>
-                    {secretQuestions.map(item => <option key={item.id} value={item.id}>{item.question}</option>)}
+                    {filteredQuestions1.map(item => <option key={item.id} value={item.id}>{item.question}</option>)}
                   </select>
                   <input
                     placeholder="Resposta secreta 1"
