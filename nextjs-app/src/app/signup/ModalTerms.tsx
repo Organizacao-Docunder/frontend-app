@@ -1,10 +1,10 @@
 import CustomModal from "@/components/CustomModal";
 
-export default function ModalSecretAnswers({ isModalOpen, setIsModalOpen}) {
+export default function ModalSecretAnswers({ isModalOpen, setIsModalOpen }) {
   return (
-    <CustomModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+    <CustomModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} customStyle={"max-w-3xl"}>
       <div className="flex flex-col py-1 px-4 w-full justify-center">
-        <h3 className="text-h3 font-weight-bold text-neutral-2">Termos e condições de uso</h3>
+        <h3 className="text-h3 font-weight-600 text-neutral-2">Termos e condições de uso</h3>
         <div className="flex items-center gap-1 mb-3">
           <span className="tag">#Python</span>
           <span className="tag">#Dev</span>
@@ -22,8 +22,7 @@ export default function ModalSecretAnswers({ isModalOpen, setIsModalOpen}) {
           </p>
         </div>
         <div className="flex justify-center w-full gap-20">
-          <button onClick={() => setIsModalOpen(false)} className="rounded-lg py-1 px-2 border border-primary-4 text-h5 text-neutral-2">Não concordo</button>
-          <button onClick={() => setIsModalOpen(false)} className="rounded-lg py-1 px-2 bg-primary-1 text-h5 text-neutral-1 font-weight-bold">Concordo</button>
+          <button onClick={() => setIsModalOpen(false)} className="rounded-lg py-2 px-4 mt-8 bg-primary-1 text-h5 text-neutral-1 font-weight-bold">Fechar</button>
         </div>
       </div>
     </CustomModal>
