@@ -81,11 +81,6 @@ export default function SignupPage() {
     setFilteredQuestions3(secretQuestions.filter(item => item.id != secondForm.questionId1 && item.id != secondForm.questionId2))
   }, [secondForm.questionId1, secondForm.questionId2, secondForm.questionId3])
 
-  // useEffect(() => {
-  //   const filteredQuestions = secretQuestions.filter(item => item.id != secondForm.questionId1 && item.id != secondForm.questionId2)
-  //   setFilteredQuestions3([...filteredQuestions])
-  // }, [secondForm.questionId2])
-
   async function goToSecondPart() {
     console.log(firstForm)
     const result: any = await validateFirstPart(firstForm)
@@ -101,11 +96,11 @@ export default function SignupPage() {
     console.log(result)
     if (result.error !== "") {
       setResponse(result)
-    } 
+    }
     if (result.error.length === 0) {
       setResponse({ message: "", error: "" })
       setIsModalSecretAnswersOpen(true)
-    } 
+    }
   }
 
   const router = useRouter();
@@ -119,13 +114,12 @@ export default function SignupPage() {
     if (result.error.length === 0) {
       router.push("/home")
     }
-
   }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-start ">
-      <ModalSecretAnswers isModalOpen={isModalSecretAnswersOpen} setIsModalOpen={setIsModalSecretAnswersOpen} secretQuestions={secretQuestions} secondForm={secondForm} onSubmit={onSubmit}/>
-      <ModalTerms isModalOpen={isModalTermsOpen} setIsModalOpen={setIsModalTermsOpen}/>
+      <ModalSecretAnswers isModalOpen={isModalSecretAnswersOpen} setIsModalOpen={setIsModalSecretAnswersOpen} secretQuestions={secretQuestions} secondForm={secondForm} onSubmit={onSubmit} />
+      <ModalTerms isModalOpen={isModalTermsOpen} setIsModalOpen={setIsModalTermsOpen} />
       <Header />
       <Nav>
         <div className="h-header flex flex-col gap-12 justify-center items-center">
@@ -212,10 +206,7 @@ export default function SignupPage() {
               :
               <>
                 <p className=" text-primary-1 pb-3 text-center">Caso você esqueça sua senha, terá que responder às seguintes perguntas para recuperá-la:</p>
-
-                {/* <label htmlFor="secret-question-1" className="texp-p text-neutral-2">Perguntas Secretas</label> */}
                 <div className="flex flex-col w-full">
-
                   <select
                     value={secondForm.questionId1}
                     onChange={(e) => onChange(e, secondForm, setSecondForm)}
@@ -232,7 +223,7 @@ export default function SignupPage() {
                     name="answer1"
                     value={secondForm.answer1}
                     onChange={(e) => onChange(e, secondForm, setSecondForm)}
-                    className={`w-full p-3 border border-solid rounded focus:outline-none focus:shadow-none text-neutral-2 ${response.error === 'answer 1' ? 'border-red-500' : 'border-primary-1'}`}
+                    className={`w-full px-3 h-10 border border-solid rounded focus:outline-none focus:shadow-none text-neutral-2 ${response.error === 'answer 1' ? 'border-red-500' : 'border-primary-1'}`}
                   />
                   <span className="h-8 w-full flex justify-end items-center">
                     <p className="text-red-500 text-sm">
@@ -257,7 +248,7 @@ export default function SignupPage() {
                     name="answer2"
                     value={secondForm.answer2}
                     onChange={(e) => onChange(e, secondForm, setSecondForm)}
-                    className={`w-full p-3 border border-solid rounded focus:outline-none focus:shadow-none text-neutral-2 ${response.error === 'answer 2' ? 'border-red-500' : 'border-primary-1'}`}
+                    className={`w-full px-3 h-10 border border-solid rounded focus:outline-none focus:shadow-none text-neutral-2 ${response.error === 'answer 2' ? 'border-red-500' : 'border-primary-1'}`}
                   />
                   <span className="h-8 w-full flex justify-end items-center">
                     <p className="text-red-500 text-sm">
@@ -282,7 +273,7 @@ export default function SignupPage() {
                     name="answer3"
                     value={secondForm.answer3}
                     onChange={(e) => onChange(e, secondForm, setSecondForm)}
-                    className={`w-full p-3 border border-solid rounded focus:outline-none focus:shadow-none text-neutral-2 ${response.error === 'answer 3' ? 'border-red-500' : 'border-primary-1'}`}
+                    className={`w-full px-3 h-10 border border-solid rounded focus:outline-none focus:shadow-none text-neutral-2 ${response.error === 'answer 3' ? 'border-red-500' : 'border-primary-1'}`}
                   />
                   <span className="h-4 pt-1 w-full flex justify-end items-center">
                     <p className="text-red-500 text-sm">
@@ -291,6 +282,7 @@ export default function SignupPage() {
                     </p>
                   </span>
                 </div>
+                <p className=" text-neutral-2 pb-3">Ao se cadastrar, estou ciente dos <span onClick={() => setIsModalTermsOpen(true)} className="text-primary-1 cursor-pointer">Termos de Uso e das Políticas de privacidade</span> do Docunder.</p>
                 <button id={"signup"} type="button" onClick={() => secretQuestionsCheck()} className="highlight-btn min-w-full">Enviar</button>
               </>
             }
