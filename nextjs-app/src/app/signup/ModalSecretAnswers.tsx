@@ -8,7 +8,7 @@ export default function ModalSecretAnswers({ isModalOpen, setIsModalOpen, secret
   let question3 = secretQuestions.filter(item => item.id == secondForm.questionId3)[0]
 
   return (
-    <CustomModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+    <CustomModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} customStyle={"max-w-4xl"}>
       <div className="p-9 flex flex-col items-center justify-center gap-4">
         <div className="w-full mb-9 flex flex-col items-center">
           <Image alt="icon-warning" src={iconWarning} />
