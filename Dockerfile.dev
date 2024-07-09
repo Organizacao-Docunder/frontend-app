@@ -1,0 +1,22 @@
+FROM node:20.11.1-alpine AS builder
+
+WORKDIR /app
+
+COPY /nextjs-app/package*.json ./
+
+ENV NODE_ENV=development
+RUN npm install
+
+COPY /nextjs-app .
+RUN npm run build
+
+FROM node:20.11.1-alpine AS dev
+
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/public ./public
+
+EXPOSE 3001
+
+CMD ["npm", "run", "dev"]
