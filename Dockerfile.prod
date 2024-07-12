@@ -3,13 +3,13 @@ FROM node:20.11.1-alpine AS builder
 WORKDIR /app
 COPY /nextjs-app/package*.json ./
 
-ENV NODE_ENV=production
+# ENV NODE_ENV=production
 RUN npm ci
 
 COPY /nextjs-app .
 RUN npm run build
 
-FROM node:20.11.1-alpine AS production
+FROM builder AS production
 WORKDIR /app
 
 RUN addgroup -g 1001 -S production
@@ -17,10 +17,10 @@ RUN adduser -S frontend -u 1001
 USER frontend
 
 COPY --from=builder --chown=frontend:production /app/.next ./.next
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package*.json ./
-COPY --from=builder /app/public ./public
+COPY --from=builder --chown=frontend:production /app/node_modules ./node_modules
+COPY --from=builder --chown=frontend:production /app/package*.json ./
+COPY --from=builder --chown=frontend:production /app/public ./public
 
-EXPOSE 8080
+EXPOSE 3001
 
 CMD ["npm", "run", "start"]
