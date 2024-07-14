@@ -1,26 +1,33 @@
 FROM node:20.11.1-alpine AS builder
-
+RUN apk add --no-cache libc6-compat
 WORKDIR /app
-COPY /nextjs-app/package*.json ./
 
-# ENV NODE_ENV=production
+COPY /nextjs-app/package*.json ./
+COPY /nextjs-app/tsconfig.json ./
 RUN npm ci
 
 COPY /nextjs-app .
 RUN npm run build
+RUN npm prune --omit=dev
 
-FROM builder AS production
+FROM node:20.11.1-alpine AS prod
 WORKDIR /app
 
 RUN addgroup -g 1001 -S production
 RUN adduser -S frontend -u 1001
-USER frontend
 
-COPY --from=builder --chown=frontend:production /app/.next ./.next
-COPY --from=builder --chown=frontend:production /app/node_modules ./node_modules
-COPY --from=builder --chown=frontend:production /app/package*.json ./
+RUN mkdir .next
+RUN chown frontend:production .next
+
+COPY /nextjs-app/package*.json ./
+COPY /nextjs-app/tsconfig.json ./
+
 COPY --from=builder --chown=frontend:production /app/public ./public
+COPY --from=builder --chown=frontend:production /app/.next/standalone ./
+COPY --from=builder --chown=frontend:production /app/.next/static ./.next/static
 
+
+# USER frontend
 EXPOSE 3001
-
-CMD ["npm", "run", "start"]
+ENV PORT 3001
+CMD HOSTNAME="0.0.0.0" node server.js
