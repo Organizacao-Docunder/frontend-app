@@ -22,12 +22,11 @@ RUN chown frontend:production .next
 COPY /nextjs-app/package*.json ./
 COPY /nextjs-app/tsconfig.json ./
 
-COPY --from=builder --chown=frontend:production /app/public ./public
-COPY --from=builder --chown=frontend:production /app/.next/standalone ./
-COPY --from=builder --chown=frontend:production /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 
 
-# USER frontend
-EXPOSE 3001
-ENV PORT 3001
-CMD HOSTNAME="0.0.0.0" node server.js
+USER frontend
+EXPOSE ${PORT}
+CMD ["node", "server.js"]
