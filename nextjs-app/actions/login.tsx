@@ -1,26 +1,35 @@
 'use server';
 
 import axios from "axios";
+import { setCookie } from "./setCookie";
 
 export interface formPrevState {
   message: string
 }
 
-export async function login(prevState: formPrevState, formData: FormData) {
+axios.defaults.withCredentials = true;
 
+export async function login(prevState: formPrevState, formData: FormData) {
   const body = {
     email: formData.get('email'),
     password: formData.get('password')
   }
 
   try {
-    const response = await axios.post('http://localhost:3000/login', body);
-    const token = response.data.access_token
+    const response = await axios.post(`http://${process.env.API_ENDPOINT}:${process.env.API_PORT}/login`, body, {
+      withCredentials: true,
+    });
     
     if (response.status === 200) {
-      console.log("token:", token)
+      const setCookieHeader = response.headers['set-cookie'];
+      if (!setCookieHeader || setCookieHeader.length === 0) {
+        throw new Error('Token não encontrado no cabeçalho de resposta.', { cause: 'token' });
+      }
+      const token = setCookieHeader[0].split(';')[0].split('=')[1];
+      setCookie('access_token', token)
     }
-    return { status: 200, message: response.data.access_token };
+    
+    return { status: 200, message: '' };
   } catch (error) {
     if (axios.isAxiosError(error)) {
       if (error.response) {
