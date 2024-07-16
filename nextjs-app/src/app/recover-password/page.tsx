@@ -39,7 +39,7 @@ export default function RecoverPasswordPage() {
   async function verifySecretAnswer() {
     const result: any = await getSecretAnswer(email, questionAndAnswer);
     setResponse(result)
-    if (result.status === 200) {
+    if (result.status === 201) {
       setScreen(3)
     }
   }
