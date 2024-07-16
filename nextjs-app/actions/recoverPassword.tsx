@@ -1,6 +1,8 @@
 'use server';
 
 import axios from "axios";
+import { setCookie } from "./setCookie";
+import { cookies } from 'next/headers'
 
 export async function getQuestionsByEmail(email) {
 
@@ -21,7 +23,8 @@ export async function getQuestionsByEmail(email) {
       throw new Error('E-mail inválido.', { cause: 'email' });
     }
 
-    const response = await axios.post('http://localhost:3000/user/recover-password', body);
+    const response = await axios.post(`http://${process.env.API_ENDPOINT}:${process.env.API_PORT}/user/recover-password`, body);
+    
     return { status: 200, cause: '', message: "OK", questions: response.data };
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -35,6 +38,8 @@ export async function getQuestionsByEmail(email) {
     return { status: 401, cause: 'email', message: 'Bad Request', questions: [] };
   }
 }
+
+axios.defaults.withCredentials = true;
 
 export async function getSecretAnswer(email, questionAndAnswer) {
 
@@ -52,8 +57,18 @@ export async function getSecretAnswer(email, questionAndAnswer) {
       throw new Error('Digite sua resposta.', { cause: 'answer' });
     }
 
-    const response = await axios.post('http://localhost:3000/user/verify-secret-answer', body);
-    return { status: 200, cause: '', message: "OK", questions: response.data };
+    const response = await axios.post(`http://${process.env.API_ENDPOINT}:${process.env.API_PORT}/user/verify-secret-answer`, body, {
+      withCredentials: true,
+    });    
+
+    const setCookieHeader = response.headers['set-cookie'];
+    if (!setCookieHeader || setCookieHeader.length === 0) {
+      throw new Error('Token não encontrado no cabeçalho de resposta.', { cause: 'token' });
+    }
+    const token = setCookieHeader[0].split(';')[0].split('=')[1];
+    setCookie('access_token', token)
+
+    return { status: response.status, cause: '', message: token, questions: [] };
   } catch (error) {
     if (axios.isAxiosError(error)) {
       if (error.response) {
@@ -115,11 +130,23 @@ export async function recoverPassword(email, newPassword) {
       newPassword: newPassword.password
     }
 
-    await axios.post('http://localhost:3000/user/reset-password', body);
+    const cookieStore = cookies();
+    const authCookie = cookieStore.get('access_token');
+
+    if (!authCookie) {
+      return { status: 401, message: 'Unauthorized' };
+    }
+
+    await axios.post(`http://${process.env.API_ENDPOINT}:${process.env.API_PORT}/user/reset-password`, body, {
+      withCredentials: true,
+      headers: {
+        Cookie: `access_token=${authCookie.value}`
+      }
+    });    
+
     return { status: 200, cause: '', message: '', questions: [] };
   } catch (error) {
     if (error instanceof Error) {
-      console.log(error.message)
       return { status: 401, cause: error.cause, message: error.message, questions: []};
     }
     return { status: 404, cause: 'new password', message: 'Bad Request', questions: [] };
