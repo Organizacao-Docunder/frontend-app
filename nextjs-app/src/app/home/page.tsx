@@ -1,3 +1,5 @@
+'use client'
+
 import Header from "@/components/Header";
 import Nav from "@/components/Nav";
 import Image from "next/image";
@@ -6,9 +8,29 @@ import iconRecentes from '../../assets/icons/schedule.svg'
 import iconFavoritos from '../../assets/icons/star.svg'
 import iconLixeira from '../../assets/icons/delete.svg'
 import iconSeta from '../../assets/icons/arrow_back_ios_new.svg'
-import HighlightBtn from "@/components/HighlightBtn";
+import { useRouter } from "next/navigation";
+import { hasAccessToken } from "../../../actions/hasAccessToken";
+import { useEffect, useState } from "react";
 
 export default function HomePage() {
+  const router = useRouter()
+  const [accessTokenExists, setAccessTokenExists] = useState(false)
+
+  useEffect(() => {
+    async function checkAccessToken() {
+      const tokenExists = await hasAccessToken()
+      setAccessTokenExists(tokenExists)
+    }
+    checkAccessToken()
+  }, [])
+  
+  useEffect(() => {
+    // if (!accessTokenExists) {
+    //   router.push("/login")
+    // }
+    console.log("home", accessTokenExists)
+  }, [accessTokenExists])
+
   return (
     <main className="flex min-h-screen min-w-full flex-col items-center">
       <Header home={true}/>
