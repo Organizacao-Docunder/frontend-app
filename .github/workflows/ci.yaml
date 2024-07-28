@@ -32,3 +32,9 @@ jobs:
         tags: |
           rodrigomolter/docunder-web:${{ steps.generate_sha.outputs.sha }}
           rodrigomolter/docunder-web:latest
+
+    - name: Trigger Deploy
+      env:
+        deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+      run: |
+        curl "$deploy_url"
