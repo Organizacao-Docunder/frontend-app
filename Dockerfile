@@ -26,7 +26,6 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 
-
 USER frontend
 EXPOSE ${PORT}
-CMD ["node", "server.js"]
+CMD HOSTNAME="0.0.0.0" node server.js
