@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--foreground-rgb))
+    )
+    rgb(var(--foreground-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.font-weight-600{
+  font-weight: 600;
+}
+
+.font-weight-500{
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 56px;
+  line-height: 51.52px;
+  letter-spacing: -0.02em;
+  font-weight: 300
+}
+
+h2 {
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: -0.02em;
+  font-weight: 300
+}
+
+h3 {
+  font-size: 32px;
+  line-height: 36px;
+  letter-spacing: -0.02em;
+  font-weight: 300
+}
+
+h4 {
+  font-size: 24px;
+  line-height: 22.08px;
+  letter-spacing: -0.02em;
+  font-weight: 300
+}
+
+h5 {
+  font-size: 20px;
+  line-height: 27px;
+  letter-spacing: -0.02em;
+  font-weight: 300
+}
+
+p {
+  font-size: 16px;
+  line-height: 14.72px;
+  letter-spacing: -0.02em;
+  font-weight: 300
+}
+
+.href{
+  font-size: 18px;
+  line-height: 27px;
+  letter-spacing: -0.02em;
+  font-weight: 300
+}
+
+.highlight-btn {
+  @apply bg-primary-1 text-neutral-1;
+  display: inline-block;
+  border: none;             
+  text-align: center;       
+  text-decoration: none;    
+  transition: all 0.3s ease;
+  position: relative;       
+  overflow: hidden;         
+  width: auto;              
+  white-space: nowrap;  
+  font-size: 24px;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.highlight-btn span {
+  display: inline-block;    
+  transition: transform 0.3s ease; 
+  will-change: transform;
+}
+
+.highlight-btn:hover span {
+  transform: scale(0.95);    
+  white-space: nowrap;      
+}
+
+.highlight-btn:active {
+  @apply bg-primary-2;
+}
+
+.highlight-btn:disabled {    
+  @apply bg-neutral-3;
+}
+
+.highlight-btn-sm {
+  @apply bg-primary-1 text-neutral-1;
+  display: inline-block;
+  border: none;             
+  text-align: center;       
+  text-decoration: none;    
+  transition: all 0.3s ease;
+  position: relative;       
+  overflow: hidden;         
+  width: auto;              
+  white-space: nowrap;  
+  font-size: 20px;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 0 16px;
+}
+
+.highlight-btn-sm span {
+  display: inline-block;    
+  transition: transform 0.3s ease; 
+  will-change: transform;
+}
+
+.highlight-btn-sm:hover span {
+  transform: scale(0.95);    
+  white-space: nowrap;      
+}
+
+.highlight-btn-sm:active {
+  @apply bg-primary-2;
+}
+
+.b-test{
+  border: 1px red solid;
+}
+
+.h-header{
+  height: calc(100vh - 80px);
+}
+
+.line{
+  @apply bg-neutral-2;
+  height: 1px;
+  width: 100%;
+}
+
+.filter-btn{
+  @apply text-primary-1 border-primary-1;
+  padding: 0 16px;
+  border-radius: 8px;
+  border: 1px solid #0A6AE0;
+}
+
+.filter-btn:hover{
+  @apply text-neutral-1 bg-primary-1;
+  transition: background 0.3s ease; 
+  transition: color 0.3s ease; 
+}
+
+.tag{
+  @apply text-neutral-2 bg-primary-4;
+  padding: 0 4px;
+  border-radius: 8px;
+}
