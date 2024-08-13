@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react";
-import { getQuestionsByEmail, getSecretAnswer, recoverPassword } from "../../../actions/recoverPassword";
+import { getQuestionsByEmail, getSecretAnswer, recoverPassword } from "./actions";
 import Image from "next/image";
 import check from "../../assets/icons/check.svg"
 import { useRouter } from "next/navigation";
