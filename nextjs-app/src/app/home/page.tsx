@@ -7,7 +7,7 @@ import iconFavoritos from '../../assets/icons/star.svg'
 import iconLixeira from '../../assets/icons/delete.svg'
 import iconSeta from '../../assets/icons/arrow_back_ios_new.svg'
 import { useRouter } from "next/navigation";
-import { hasAccessToken } from "../../../actions/hasAccessToken";
+import { hasAccessToken } from "../../lib/auth/hasAccessToken";
 import { useEffect, useState } from "react";
 
 export default function HomePage() {
