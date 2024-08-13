@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image";
 import HighlightBtn from "./HighlightBtn";
 import logo from '../assets/logo.svg'
@@ -6,8 +8,14 @@ import Input from "./Input";
 import iconHelp from "../assets/icons/help.svg"
 import iconSettings from "../assets/icons/settings.svg"
 import iconEllipse from "../assets/icons/Ellipse.svg"
+import { usePathname } from 'next/navigation';
 
-export default function Header({ home = false }) {
+
+export default function Header() {
+  const pathname = usePathname();
+
+  const isHomePage = pathname === '/home';
+
   return (
     <header
       className="w-full h-20 flex justify-center bg-neutral-4"
@@ -18,7 +26,7 @@ export default function Header({ home = false }) {
             <Image alt="logo" src={logo} />
           </Link>
         </div>
-        {home ?
+        {isHomePage ?
           <div className="flex w-4/5 pr-20 pl-12 items-center justify-between">
             <div className="flex gap-12 w-1/2">
             <Link href={""}><h5 className="text-h5 text-neutral-2">Início</h5></Link>
