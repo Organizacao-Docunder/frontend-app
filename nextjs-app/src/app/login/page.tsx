@@ -4,7 +4,7 @@ import Input from "@/components/Input";
 import Link from "next/link";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
-import { login } from "../../../actions/login";
+import { login } from "./actions";
 
 export default function LoginPage() {
   const [formState, formAction] = useFormState(login, { status: 0, message: "" });

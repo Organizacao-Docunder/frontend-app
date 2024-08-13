@@ -1,7 +1,7 @@
 'use server';
 
 import axios from "axios";
-import { setCookie } from "./setCookie";
+import { setCookie } from "../../lib/auth/setCookie";
 
 export interface formPrevState {
   message: string
