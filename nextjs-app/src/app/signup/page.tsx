@@ -1,6 +1,6 @@
 'use client';
 
-import { validateFirstPart, validateSecondPart, signup } from '../../../actions/signup'
+import { validateFirstPart, validateSecondPart, signup } from './actions'
 import { useEffect, useState } from "react";
 import ModalSecretAnswers from './ModalSecretAnswers'
 import ModalTerms from './ModalTerms'
