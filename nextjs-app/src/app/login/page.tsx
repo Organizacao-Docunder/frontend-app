@@ -1,6 +1,6 @@
 'use client';
 
-import Input from "@/components/Input";
+import Input from "@/app/login/components/Input";
 import Link from "next/link";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
