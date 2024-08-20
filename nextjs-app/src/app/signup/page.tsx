@@ -2,9 +2,10 @@
 
 import { validateFirstPart, validateSecondPart, signup } from './actions'
 import { useEffect, useState } from "react";
-import ModalSecretAnswers from './ModalSecretAnswers'
-import ModalTerms from './ModalTerms'
+import ModalSecretAnswers from './components/ModalSecretAnswers'
+import ModalTerms from './components/ModalTerms'
 import { useRouter } from "next/navigation";
+import Background from '@/components/Background';
 
 export default function SignupPage() {
   const [isModalSecretAnswersOpen, setIsModalSecretAnswersOpen] = useState(false);
@@ -115,7 +116,7 @@ export default function SignupPage() {
   }
 
   return (
-    <>
+    <Background custom="overflow-hidden">
       <ModalSecretAnswers isModalOpen={isModalSecretAnswersOpen} setIsModalOpen={setIsModalSecretAnswersOpen} secretQuestions={secretQuestions} secondForm={secondForm} onSubmit={onSubmit} />
       <ModalTerms isModalOpen={isModalTermsOpen} setIsModalOpen={setIsModalTermsOpen} />
       <div className="h-header flex flex-col gap-12 justify-center items-center">
@@ -284,6 +285,6 @@ export default function SignupPage() {
           }
         </div>
       </div>
-    </>
+    </Background>
   )
 }

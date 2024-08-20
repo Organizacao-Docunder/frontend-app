@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { League_Spartan } from "next/font/google";
 import "./globals.css";
-import Nav from "@/components/Nav";
 import Header from "@/components/Header";
 
 const leagueSpartan = League_Spartan({ subsets: ["latin"], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] });
@@ -21,9 +20,9 @@ export default function RootLayout({
       <body className={leagueSpartan.className}>
         <main className="flex min-h-screen min-w-full flex-col items-center">
           <Header/>
-          <Nav>
+          <nav className="w-full h-full">
             {children}
-          </Nav>
+          </nav>
         </main>
       </body>
     </html>

@@ -1,6 +1,6 @@
 import CustomModal from "@/components/CustomModal";
 import Image from "next/image";
-import iconWarning from "../../assets/icons/warning.svg"
+import iconWarning from "../../../assets/icons/warning.svg"
 
 export default function ModalSecretAnswers({ isModalOpen, setIsModalOpen, secretQuestions, secondForm, onSubmit }) {
   let question1 = secretQuestions.filter(item => item.id == secondForm.questionId1)[0]
