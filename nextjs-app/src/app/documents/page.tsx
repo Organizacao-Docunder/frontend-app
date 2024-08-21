@@ -4,7 +4,7 @@ import { useQuill } from "react-quilljs";
 import 'quill/dist/quill.snow.css';
 
 export default function Page() {
-    const { quillRef } = useQuill();
+    const { quillRef } = useQuill({ theme: 'snow' });
 
     return (
         <div className="w-screen h-screen bg-neutral-4">
