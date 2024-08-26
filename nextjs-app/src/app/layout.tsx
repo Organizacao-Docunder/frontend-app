@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { League_Spartan } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header";
 
-const leagueSpartan = League_Spartan({ subsets: ["latin"], weight: ['300', '600'] });
+const leagueSpartan = League_Spartan({ subsets: ["latin"], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] });
 
 export const metadata: Metadata = {
   title: "Docunder",
@@ -16,7 +17,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={leagueSpartan.className}>{children}</body>
+      <body className={leagueSpartan.className}>
+        <main className="flex min-h-screen min-w-full flex-col items-center">
+          <Header/>
+          <nav className="w-full h-full">
+            {children}
+          </nav>
+        </main>
+      </body>
     </html>
   );
 }
