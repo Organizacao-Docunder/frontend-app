@@ -60,7 +60,7 @@ export default function NavigationMenu() {
       >
         <span className={`w-px h-6 mr-1 ${activeBtn === 'settings-btn' ? 'bg-current' : 'bg-transparent'} bg-current`}></span>
         <span className="w-6 h-6 mr-3 flex justify-center items-center">
-          <IconSettings />
+          <IconSettings width="18" height="18"/>
         </span>
         <h5 className="text-h5">Configurações</h5>
       </div>

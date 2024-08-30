@@ -1,12 +1,9 @@
 'use client'
 
-import Image from "next/image";
-import logo from '../assets/logo.svg'
+import Logo from '../assets/logo.svg'
 import Link from "next/link";
-import Input from "../app/login/components/Input";
-import iconHelp from "../assets/icons/help.svg"
-import iconSettings from "../assets/icons/settings.svg"
-import iconEllipse from "../assets/icons/Ellipse.svg"
+import IconHelp from "../assets/icons/help.svg"
+import IconSettings from "../assets/icons/settings.svg"
 import { usePathname, useRouter } from 'next/navigation';
 
 export default function Header() {
@@ -26,7 +23,7 @@ export default function Header() {
       <div className="w-full h-full flex justify-between">
         <div className="flex w-1/5 items-center justify-center">
           <Link href={"/"} className="flex justify-center w-full">
-            <Image alt="logo" src={logo} />
+            <Logo />
           </Link>
         </div>
         {isHomePage ?
@@ -37,15 +34,15 @@ export default function Header() {
               <h5 className="text-h5 text-neutral-2">Times</h5>
               <button type="button" className="highlight-btn px-4 h-8 max-w-max">Criar</button>
             </div>
-            <div className="flex gap-4 w-1/2 justify-end">
+            <div className="flex gap-4 w-1/2 justify-end text-primary-1">
               <input 
                 placeholder="Pesquisar" 
                 type="" 
                 name="research"
                 className="bg-neutral-1 h-8 rounded-lg border border-primary-1 py-2 px-4 w-1/2"
               />
-              <Image alt="icon-help" src={iconHelp} />
-              <Image alt="icon-settings" src={iconSettings} />
+              <IconHelp />
+              <IconSettings width="24" height="24"/>
               {/* <Image alt="icon-ellipse" src={iconEllipse} /> */}
             </div>
           </div>
