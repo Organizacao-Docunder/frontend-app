@@ -36,17 +36,17 @@ export default function HomePage() {
       <div className="flex min-w-full h-header">
         <NavigationMenu/>
         <section className="flex flex-col w-4/5 pl-12 pr-20 ">
-          <h3 className="text-h3 py-4 text-neutral-2 font-weight-bold">Início</h3>
+          <h3 className="py-4 mb-4 text-neutral-2 font-weight-600">Início</h3>
           <div className="pb-6">
-            <h4 className="text-h4 text-neutral-2 pb-2">Acessar documento</h4>
+            <h4 className="text-h4 text-neutral-2 pb-2 font-weight-600">Acessar documento</h4>
             <div className="flex gap-3">
               <button className="filter-btn">Time</button>
               <button className="filter-btn">Minha biblioteca</button>
-              <button className="filter-btn">Favoritos</button>
+              {/* <button className="filter-btn">Favoritos</button> */}
             </div>
           </div>
           <div>
-            <div className="w-full bg-neutral-1 pl-8 py-6 pr-11 rounded-lg">
+            <div className="w-full bg-neutral-1 pl-8 py-6 pr-11 rounded-lg box-shadow">
               <h3 className="text-h3 mb-1 text-neutral-2 font-weight-bold">Documento teste</h3>
               <div className="flex items-center gap-1 mb-3">
                 <span className="tag">#Python</span>

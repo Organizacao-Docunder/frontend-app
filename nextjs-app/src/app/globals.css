@@ -188,3 +188,7 @@ p {
   padding: 0 4px;
   border-radius: 8px;
 }
+
+.box-shadow{
+  box-shadow: 4px 4px 4px 0px #0000001A;
+}
