@@ -4,13 +4,19 @@ import IconFavoritos from '../assets/icons/star.svg'
 import IconLixeira from '../assets/icons/delete.svg'
 import IconSettings from '../assets/icons/settings.svg'
 import IconQuiz from '../assets/icons/quiz.svg'
+import IconUser from '../assets/icons/user.png'
 import { useState } from 'react'
+import Image from 'next/image'
 
 export default function NavigationMenu() {
   const [activeBtn, setActiveBtn] = useState('home-btn')
 
   return (
     <aside className="flex flex-col gap-4 pt-4 w-1/5 bg-neutral-1">
+      <div className='ml-9 mt-6 mb-10 flex items-center gap-4'>
+        <Image src={IconUser} alt='user-icon'/>
+        <h5 className='text-primary-1'>Nome do Usuário</h5>
+      </div>
       <div
         onClick={() => setActiveBtn('home-btn')}
         className={`ml-9 cursor-pointer flex items-center h-12 ${activeBtn === 'home-btn' ? 'text-primary-1' : 'text-neutral-2'} hover:text-primary-2`}
