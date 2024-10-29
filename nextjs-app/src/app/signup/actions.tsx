@@ -117,7 +117,10 @@ export async function signup(firstForm, secondForm) {
   }
 
   try {
-    await axios.post('http://localhost:3000/user', body);
+    await axios.post(
+      `http://${process.env.API_ENDPOINT}:${process.env.API_PORT}/user`,
+      body
+    )
     return { error: '', message: 'Created' };
   } catch (error) {
     if (axios.isAxiosError(error)) {
