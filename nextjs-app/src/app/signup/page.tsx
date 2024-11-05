@@ -10,6 +10,7 @@ import Background from '@/components/Background';
 export default function SignupPage() {
   const [isModalSecretAnswersOpen, setIsModalSecretAnswersOpen] = useState(false);
   const [isModalTermsOpen, setIsModalTermsOpen] = useState(false);
+  const [isCheckedTerms, setIsCheckedTerms] = useState(false);
   const [isFirstForm, setIsFirstForm] = useState(true)
   const [response, setResponse] = useState({ message: "", error: "" })
   const [filteredQuestions1, setFilteredQuestions1] = useState([{ id: 0, question: "" }])
@@ -115,6 +116,8 @@ export default function SignupPage() {
     }
   }
 
+  const termsCheck = (e) => e.target.checked ? setIsCheckedTerms(true) : setIsCheckedTerms(false)
+
   return (
     <Background custom="overflow-hidden">
       <ModalSecretAnswers isModalOpen={isModalSecretAnswersOpen} setIsModalOpen={setIsModalSecretAnswersOpen} secretQuestions={secretQuestions} secondForm={secondForm} onSubmit={onSubmit} />
@@ -197,8 +200,17 @@ export default function SignupPage() {
                   </span>
                 </div>
               </div>
-              <p className=" text-neutral-2 pb-3">Ao se cadastrar, estou ciente dos <span onClick={() => setIsModalTermsOpen(true)} className="text-primary-1 cursor-pointer">Termos de Uso e das Políticas de privacidade</span> do Docunder.</p>
-              <button type="button" onClick={() => goToSecondPart()} className="highlight-btn min-w-full">Continuar</button>
+              <div className="flex align-top gap-2 pb-3">
+                <input
+                  type='checkbox'
+                  id='termsOfUse'
+                  name='termsOfUse'
+                  required
+                  onClick={(e) => termsCheck(e)}
+                />
+                <label className="text-neutral-2" htmlFor='termsOfUse'>Estou ciente dos <span onClick={() => setIsModalTermsOpen(true)} className="text-primary-1 cursor-pointer">Termos de Uso e das Políticas de privacidade</span> do Docunder.</label>
+              </div>
+              <button type="button" disabled={!isCheckedTerms} onClick={() => goToSecondPart()} className="highlight-btn min-w-full">Continuar</button>
             </>
             :
             <>
