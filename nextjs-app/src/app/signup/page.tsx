@@ -6,10 +6,16 @@ import ModalSecretAnswers from './components/ModalSecretAnswers'
 import ModalTerms from './components/ModalTerms'
 import { useRouter } from "next/navigation";
 import Background from '@/components/Background';
+import Image from 'next/image';
+
+import eyesOpenIcon from '@/assets/icons/eyes_open.png'
+import eyesClosedIcon from '@/assets/icons/eyes_closed.png'
 
 export default function SignupPage() {
   const [isModalSecretAnswersOpen, setIsModalSecretAnswersOpen] = useState(false);
   const [isModalTermsOpen, setIsModalTermsOpen] = useState(false);
+  const [showPassword, setShowPassword] = useState('password');
+  const [showMatchPassword, setShowMatchPassword] = useState('password');
   const [isFirstForm, setIsFirstForm] = useState(true)
   const [response, setResponse] = useState({ message: "", error: "" })
   const [filteredQuestions1, setFilteredQuestions1] = useState([{ id: 0, question: "" }])
@@ -163,16 +169,29 @@ export default function SignupPage() {
                 </div>
                 <div>
                   <p className="text-neutral-2 py-1">Senha</p>
-                  <input
-                    placeholder="Insira sua senha"
-                    required
-                    type="password"
-                    name="password"
-                    id="password"
-                    value={firstForm.password}
-                    onChange={(e) => onChange(e, firstForm, setFirstForm)}
-                    className={`w-full px-3 h-10 border border-solid rounded text-neutral-2 ${response.error === 'password' || response.error === 'match password' ? 'border-red-500' : 'border-primary-1'}`}
-                  />
+                  <div className={`w-full flex h-10 border border-solid rounded text-neutral-2 overflow-hidden ${response.error === 'password' || response.error === 'match password' ? 'border-red-500' : 'border-primary-1'}`}>
+                    <input
+                      placeholder="Insira sua senha"
+                      required
+                      type={showPassword}
+                      name="password"
+                      id="password"
+                      value={firstForm.password}
+                      onChange={(e) => onChange(e, firstForm, setFirstForm)}
+                      className='w-full h-full pl-3'
+                    />
+                    <button className="bg-white pr-3" onClick={(e) => {
+                      e.preventDefault()
+                      setShowPassword(showPassword === 'password' ? 'text' : 'password')
+                    }}>
+                      <Image
+                        src={showPassword === 'password' ? eyesClosedIcon : eyesOpenIcon}
+                        alt="password icon"
+                        width={24}
+                        height={24}
+                      />
+                    </button>
+                  </div>
                   <span className="h-4 pt-1 w-full flex justify-end items-center">
                     <p className="text-red-500 text-sm">
                       {response.error === 'password' && response.message}
@@ -181,15 +200,29 @@ export default function SignupPage() {
                 </div>
                 <div>
                   <p className="text-neutral-2 py-1">Confirmar senha</p>
-                  <input
-                    placeholder="Confirme sua senha"
-                    required
-                    type="password"
-                    name="matchPassword"
-                    value={firstForm.matchPassword}
-                    onChange={(e) => onChange(e, firstForm, setFirstForm)}
-                    className={`w-full px-3 h-10 border border-solid rounded text-neutral-2 ${response.error === 'match password' ? 'border-red-500' : 'border-primary-1'}`}
-                  />
+
+                  <div className={`w-full flex h-10 border border-solid rounded text-neutral-2 overflow-hidden ${response.error === 'password' || response.error === 'match password' ? 'border-red-500' : 'border-primary-1'}`}>
+                    <input
+                      placeholder="Confirme sua senha"
+                      required
+                      type={showMatchPassword}
+                      name="matchPassword"
+                      value={firstForm.matchPassword}
+                      onChange={(e) => onChange(e, firstForm, setFirstForm)}
+                      className='w-full h-full pl-3'
+                    />
+                    <button className="bg-white pr-3" onClick={(e) => {
+                      e.preventDefault()
+                      setShowMatchPassword(showMatchPassword === 'password' ? 'text' : 'password')
+                    }}>
+                      <Image
+                        src={showMatchPassword === 'password' ? eyesClosedIcon : eyesOpenIcon}
+                        alt="password icon"
+                        width={24}
+                        height={24}
+                      />
+                    </button>
+                  </div>
                   <span className="h-4 pt-1 w-full flex justify-end items-center">
                     <p className="text-red-500 text-sm">
                       {response.error === 'match password' && response.message}
