@@ -32,11 +32,13 @@ export default function LoginPage() {
         <h1 className="text-primary-1 font-weight-600">Entrar</h1>
         <form action={formAction} className="flex flex-col items-center w-80">
           <div className="flex flex-col w-full gap-3">
-            <Input
+            <input
               placeholder="E-mail"
+              required
               type="text"
               name="email"
-              border={formState.status === 401 ? '1px solid red' : undefined}
+              className={`w-full px-3 h-10 border border-solid rounded text-p text-neutral-2 
+                ${formState.status === 401 ? 'border-red-500' : 'border-primary-1'}`}
             />
             <div
               className={`w-full flex h-10 border border-solid rounded overflow-hidden text-p text-neutral-2 ${formState.status === 401 ? 'border-red-500' : 'border-primary-1'}`}>
