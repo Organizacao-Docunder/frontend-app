@@ -7,7 +7,6 @@ import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 
 import { login } from "./actions";
-import Input from "@/app/login/components/Input";
 import Background from "@/components/Background";
 
 import eyesOpenIcon from '@/assets/icons/eyes_open.png'
