@@ -75,7 +75,7 @@ h5 {
   font-weight: 300
 }
 
-p {
+p, label {
   font-size: 16px;
   line-height: 14.72px;
   letter-spacing: -0.02em;
@@ -122,6 +122,7 @@ p {
 
 .highlight-btn:disabled {    
   @apply bg-neutral-3;
+  opacity: 0.4;
 }
 
 .highlight-btn-sm {
