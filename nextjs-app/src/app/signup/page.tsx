@@ -241,7 +241,7 @@ export default function SignupPage() {
                   required
                   onClick={(e) => termsCheck(e)}
                 />
-                <label className="text-neutral-2" htmlFor='termsOfUse'>Estou ciente dos <span onClick={() => setIsModalTermsOpen(true)} className="text-primary-1 cursor-pointer">Termos de Uso e das Políticas de privacidade</span> do Docunder.</label>
+                <label className="text-neutral-2" htmlFor='termsOfUse'>Estou ciente sobre os <span onClick={() => setIsModalTermsOpen(true)} className="text-primary-1 cursor-pointer">Termos de Uso e Políticas de privacidade</span> do Docunder.</label>
               </div>
               <button type="button" disabled={!isCheckedTerms} onClick={() => goToSecondPart()} className="highlight-btn min-w-full">Continuar</button>
             </>
