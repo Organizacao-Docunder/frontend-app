@@ -17,8 +17,6 @@ export default function ModalSecretAnswers({ isModalOpen, setIsModalOpen }) {
           <p className="pl-4 text-neutral-2">
             1.1. Este website destina-se a pessoas desenvolvedoras de software, gerentes de projeto e produto, designers e demais profissionais da área de tecnologia.
           </p>
-          {/* <p className="pl-4 text-neutral-2">
-            1.2. Você tem direito a acessar, corrigir, atualizar ou solicitar a exclusão de suas informações pessoais a qualquer momento ao entrar nas configurações da própria conta.</p> */}
           <p className="pl-4 text-neutral-2">
             1.2. Ao aceitar estes termos você concorda em não utilizar o website para qualquer fim ilegal ou não autorizado.
           </p>
@@ -26,10 +24,10 @@ export default function ModalSecretAnswers({ isModalOpen, setIsModalOpen }) {
             Código Aberto
           </h5>
           <p className="pl-4 text-neutral-2">
-            2.1. Este website possui  o seu código fonte disponível no <a className="text-primary-1" href="https://github.com/Organizacao-Docunder/App">GitHub</a> sob a licença de uso de Código Aberto MIT. Esta licença permite o uso, cópia, modificação, fusão, publicação, distribuição, sublicenciamento e/ou venda de cópias do software, desde que os avisos de direitos autorais e de permissão sejam incluídos em todas as cópias ou partes substanciais do software.
+            2.1. Este website possui  o seu código fonte disponível no <a className="text-primary-1" href="https://github.com/Organizacao-Docunder/App" target="_blank">GitHub</a> sob a licença de uso de Código Aberto MIT. Esta licença permite o uso, cópia, modificação, fusão, publicação, distribuição, sublicenciamento e/ou venda de cópias do software, desde que os avisos de direitos autorais e de permissão sejam incluídos em todas as cópias ou partes substanciais do software.
           </p>
           <p className="pl-4 text-neutral-2">
-            2.2. Para saber mais, acesse o link: <a className="text-primary-1" href="https://github.com/Organizacao-Docunder/App/blob/main/LICENSE">https://github.com/Organizacao-Docunder/App/blob/main/LICENSE</a>
+            2.2. Para saber mais, acesse o link: <a className="text-primary-1" href="https://github.com/Organizacao-Docunder/App/blob/main/LICENSE" target="_blank">https://github.com/Organizacao-Docunder/App/blob/main/LICENSE</a>
           </p>
           <h5 className="text-neutral-2 font-weight-500">
             Limitação de responsabilidade
@@ -93,7 +91,7 @@ export default function ModalSecretAnswers({ isModalOpen, setIsModalOpen }) {
             Segurança
           </h5>
           <p className="pl-4 text-neutral-2">
-            5.1 Implementamos medidas de segurança para proteger suas informações pessoais contra acesso não autorizado, alteração, divulgação ou destruição. Realizamos uma atualização obrigatória de senha a cada 6 meses, na qual o usuário é convidado a atualizar sua senha, visando garantir a segurança operacional e o acesso protegido ao Docunder - (Novo Requisito SCRUM 50).
+            5.1 Implementamos medidas de segurança para proteger suas informações pessoais contra acesso não autorizado, alteração, divulgação ou destruição. Realizamos uma atualização obrigatória de senha a cada 6 meses, na qual o usuário é convidado a atualizar sua senha, visando garantir a segurança operacional e o acesso protegido ao Docunder.
           </p>
           <h5 className="text-neutral-2 font-weight-500">
             Alterações na Política de Privacidade
