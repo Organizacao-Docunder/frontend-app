@@ -99,6 +99,7 @@ export async function signup(firstForm, secondForm) {
     name: firstForm.name,
     email: firstForm.email,
     password: firstForm.password,
+    acceptedTerms: true,
     secretAnswers:
       [
         {

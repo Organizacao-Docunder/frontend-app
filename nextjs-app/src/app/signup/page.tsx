@@ -106,14 +106,15 @@ export default function SignupPage() {
       setIsModalSecretAnswersOpen(true)
     }
   }
-
+  
   const router = useRouter();
-
+  
   async function onSubmit() {
     const result: any = await signup(firstForm, secondForm);
     setResponse(result)
     if (result.error === "email") {
       setIsFirstForm(true)
+      setIsCheckedTerms(false)
     }
     if (result.error.length === 0) {
       router.push("/home")
