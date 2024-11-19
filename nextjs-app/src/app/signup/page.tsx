@@ -88,7 +88,6 @@ export default function SignupPage() {
   }, [secondForm.questionId1, secondForm.questionId2, secondForm.questionId3])
 
   async function goToSecondPart() {
-    console.log(firstForm)
     const result: any = await validateFirstPart(firstForm)
     if (result.error !== "") {
       setResponse(result)
@@ -99,7 +98,6 @@ export default function SignupPage() {
 
   async function secretQuestionsCheck() {
     const result: any = await validateSecondPart(secondForm)
-    console.log(result)
     if (result.error !== "") {
       setResponse(result)
     }
