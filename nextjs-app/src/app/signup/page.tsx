@@ -14,6 +14,7 @@ import eyesClosedIcon from '@/assets/icons/eyes_closed.png'
 export default function SignupPage() {
   const [isModalSecretAnswersOpen, setIsModalSecretAnswersOpen] = useState(false);
   const [isModalTermsOpen, setIsModalTermsOpen] = useState(false);
+  const [isCheckedTerms, setIsCheckedTerms] = useState(false);
   const [showPassword, setShowPassword] = useState('password');
   const [showMatchPassword, setShowMatchPassword] = useState('password');
   const [isFirstForm, setIsFirstForm] = useState(true)
@@ -87,7 +88,6 @@ export default function SignupPage() {
   }, [secondForm.questionId1, secondForm.questionId2, secondForm.questionId3])
 
   async function goToSecondPart() {
-    console.log(firstForm)
     const result: any = await validateFirstPart(firstForm)
     if (result.error !== "") {
       setResponse(result)
@@ -98,7 +98,6 @@ export default function SignupPage() {
 
   async function secretQuestionsCheck() {
     const result: any = await validateSecondPart(secondForm)
-    console.log(result)
     if (result.error !== "") {
       setResponse(result)
     }
@@ -107,19 +106,22 @@ export default function SignupPage() {
       setIsModalSecretAnswersOpen(true)
     }
   }
-
+  
   const router = useRouter();
-
+  
   async function onSubmit() {
     const result: any = await signup(firstForm, secondForm);
     setResponse(result)
     if (result.error === "email") {
       setIsFirstForm(true)
+      setIsCheckedTerms(false)
     }
     if (result.error.length === 0) {
       router.push("/home")
     }
   }
+
+  const termsCheck = (e) => e.target.checked ? setIsCheckedTerms(true) : setIsCheckedTerms(false)
 
   return (
     <Background custom="overflow-hidden">
@@ -230,8 +232,17 @@ export default function SignupPage() {
                   </span>
                 </div>
               </div>
-              <p className=" text-neutral-2 pb-3">Ao se cadastrar, estou ciente dos <span onClick={() => setIsModalTermsOpen(true)} className="text-primary-1 cursor-pointer">Termos de Uso e das Políticas de privacidade</span> do Docunder.</p>
-              <button type="button" onClick={() => goToSecondPart()} className="highlight-btn min-w-full">Continuar</button>
+              <div className="flex align-top gap-2 pb-3">
+                <input
+                  type='checkbox'
+                  id='termsOfUse'
+                  name='termsOfUse'
+                  required
+                  onClick={(e) => termsCheck(e)}
+                />
+                <label className="text-neutral-2" htmlFor='termsOfUse'>Estou ciente sobre os <span onClick={() => setIsModalTermsOpen(true)} className="text-primary-1 cursor-pointer">Termos de Uso e Políticas de privacidade</span> do Docunder.</label>
+              </div>
+              <button type="button" disabled={!isCheckedTerms} onClick={() => goToSecondPart()} className="highlight-btn min-w-full">Continuar</button>
             </>
             :
             <>
