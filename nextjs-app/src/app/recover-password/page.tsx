@@ -7,8 +7,13 @@ import check from "../../assets/icons/check.svg"
 import { useRouter } from "next/navigation";
 import Background from "@/components/Background";
 
+import eyesOpenIcon from '@/assets/icons/eyes_open.png'
+import eyesClosedIcon from '@/assets/icons/eyes_closed.png'
+
 export default function RecoverPasswordPage() {
   const [email, setEmail] = useState("")
+  const [showPassword, setShowPassword] = useState('password');
+  const [showMatchPassword, setShowMatchPassword] = useState('password');
   const [questionAndAnswer, setQuestionAndAnswer] = useState({
     questionId: 0,
     answer: ""
@@ -117,32 +122,58 @@ export default function RecoverPasswordPage() {
                 <h1 className={`mb-12 text-primary-1 font-weight-600`}>Recuperar senha</h1>
                 <div className="flex flex-col w-full max-w-sm">
                   <p className="text-neutral-2 py-1">Nova senha</p>
-                  <input
-                    placeholder="Insira sua senha"
-                    required
-                    type="password"
-                    name="password"
-                    id="password"
-                    value={newPassword.password}
-                    onChange={(e) => onChange(e, newPassword, setNewPassword)}
-                    className={`w-full p-3 border border-solid rounded text-neutral-2 ${response.cause === 'password' ? 'border-red-500' : 'border-primary-1'}`}
-                  />
+                  <div className={`flex border border-solid rounded overflow-hidden focus-within:border-black ${response.cause === 'password' ? 'border-red-500' : 'border-primary-1'}`}>
+                    <input
+                      placeholder="Insira sua senha"
+                      required
+                      type={showPassword}
+                      name="password"
+                      id="password"
+                      value={newPassword.password}
+                      onChange={(e) => onChange(e, newPassword, setNewPassword)}
+                      className="w-full p-3 text-neutral-2 focus:outline-none"
+                    />
+                    <button className="bg-white px-3" onClick={(e) => {
+                      e.preventDefault()
+                      setShowPassword(showPassword === 'password' ? 'text' : 'password')
+                    }}>
+                      <Image
+                        src={showPassword === 'password' ? eyesOpenIcon : eyesClosedIcon}
+                        alt="password icon"
+                        width={24}
+                        height={24}
+                      />
+                    </button>
+                  </div>
                   <span className="h-4 pt-1 w-full flex justify-end items-center">
                     <p className="text-red-500 text-sm">
                       {response.cause === "password" && response.message}
                     </p>
                   </span>
                   <p className="text-neutral-2 py-1">Confirmar senha</p>
-                  <input
-                    placeholder="Insira novamente sua senha"
-                    required
-                    type="password"
-                    name="matchPassword"
-                    id="matchPassword"
-                    value={newPassword.matchPassword}
-                    onChange={(e) => onChange(e, newPassword, setNewPassword)}
-                    className={`w-full p-3 border border-solid rounded text-neutral-2 ${response.cause === 'match password' ? 'border-red-500' : 'border-primary-1'}`}
-                  />
+                  <div className={`flex border border-solid rounded overflow-hidden focus-within:border-black ${response.cause === 'password' ? 'border-red-500' : 'border-primary-1'}`}>
+                    <input
+                      placeholder="Insira novamente sua senha"
+                      required
+                      type={showMatchPassword}
+                      name="matchPassword"
+                      id="matchPassword"
+                      value={newPassword.matchPassword}
+                      onChange={(e) => onChange(e, newPassword, setNewPassword)}
+                      className="w-full p-3 text-neutral-2 focus:outline-none"
+                    />
+                    <button className="bg-white px-3" onClick={(e) => {
+                      e.preventDefault()
+                      setShowMatchPassword(showMatchPassword === 'password' ? 'text' : 'password')
+                    }}>
+                      <Image
+                        src={showMatchPassword === 'password' ? eyesOpenIcon : eyesClosedIcon}
+                        alt="password icon"
+                        width={24}
+                        height={24}
+                      />
+                    </button>
+                  </div>
                   <span className="h-4 pt-1 w-full flex justify-end items-center">
                     <p className="text-red-500 text-sm">
                       {response.cause === "match password" && response.message}
