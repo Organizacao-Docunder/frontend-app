@@ -106,9 +106,9 @@ export default function SignupPage() {
       setIsModalSecretAnswersOpen(true)
     }
   }
-  
+
   const router = useRouter();
-  
+
   async function onSubmit() {
     const result: any = await signup(firstForm, secondForm);
     setResponse(result)
@@ -187,7 +187,7 @@ export default function SignupPage() {
                       setShowPassword(showPassword === 'password' ? 'text' : 'password')
                     }}>
                       <Image
-                        src={showPassword === 'password' ? eyesClosedIcon : eyesOpenIcon}
+                        src={showPassword === 'password' ? eyesOpenIcon : eyesClosedIcon}
                         alt="password icon"
                         width={24}
                         height={24}
@@ -218,7 +218,7 @@ export default function SignupPage() {
                       setShowMatchPassword(showMatchPassword === 'password' ? 'text' : 'password')
                     }}>
                       <Image
-                        src={showMatchPassword === 'password' ? eyesClosedIcon : eyesOpenIcon}
+                        src={showMatchPassword === 'password' ? eyesOpenIcon : eyesClosedIcon}
                         alt="password icon"
                         width={24}
                         height={24}
