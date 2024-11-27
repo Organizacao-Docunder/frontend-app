@@ -1,6 +1,5 @@
 import CustomModal from "@/components/CustomModal";
-import Image from "next/image";
-import iconWarning from "../../../assets/icons/warning.svg"
+import WarningImage from "../../../assets/icons/warning.svg"
 
 export default function ModalSecretAnswers({ isModalOpen, setIsModalOpen, secretQuestions, secondForm, onSubmit }) {
   let question1 = secretQuestions.filter(item => item.id == secondForm.questionId1)[0]
@@ -8,16 +7,16 @@ export default function ModalSecretAnswers({ isModalOpen, setIsModalOpen, secret
   let question3 = secretQuestions.filter(item => item.id == secondForm.questionId3)[0]
 
   return (
-    <CustomModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} customStyle={"max-w-4xl"}>
+    <CustomModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} customStyle={"max-w-4xl m-4"}>
       <div className="p-9 flex flex-col items-center justify-center gap-4">
         <div className="w-full mb-9 flex flex-col items-center">
-          <Image alt="icon-warning" src={iconWarning} />
+          <WarningImage/>
           <h2 className="text-h1 text-neutral-2">Atenção</h2>
         </div>
         <div className="mb-4 w-full flex flex-col items-center">
-          <p className="text-p text-red-500 font-weight-bold">Esta é uma etapa importante.</p>
-          <p className="text-p text-red-500 font-weight-bold">Anote em local seguro suas respostas.</p>
-          <p className="text-p text-red-500 font-weight-bold">Você só conseguirá recuperar sua senha respondendo às perguntas corretamente.</p>
+          <p className="text-p text-red-500 font-weight-bold text-center">Esta é uma etapa importante.</p>
+          <p className="text-p text-red-500 font-weight-bold text-center">Anote em local seguro suas respostas.</p>
+          <p className="text-p text-red-500 font-weight-bold text-center">Você só conseguirá recuperar sua senha respondendo às perguntas corretamente.</p>
         </div>
         <div className="w-full flex flex-col max-w-sm">
           <p className="text-p text-neutral-2">Pergunta Secreta 1: {secondForm.questionId1 !== 0 && question1.question}</p>
