@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { getQuestionsByEmail, getSecretAnswer, recoverPassword } from "./actions";
 import Image from "next/image";
-import check from "../../assets/icons/check.svg"
+import CheckImage from "../../assets/icons/check.svg"
 import { useRouter } from "next/navigation";
 import Background from "@/components/Background";
 
@@ -184,7 +184,7 @@ export default function RecoverPasswordPage() {
               </>
               :
               <>
-                <Image alt="check" src={check} className="mb-8" />
+                <CheckImage/>
                 <h1 className={`mb-4 text-primary-1 font-weight-600`}>Senha redefinida</h1>
                 <h4 className={`mb-24 text-primary-1 font-weight-600`}>Sua nova senha foi salva.</h4>
                 <button onClick={() => goToHomePage()} className="highlight-btn min-w-60">Ir para página inicial</button>
